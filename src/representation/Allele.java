@@ -9,8 +9,7 @@ package representation;
  *
  * @author rjesteban
  */
-public interface Individual {
-    
-    public int calculateFitness();
-    
+public interface Allele {
+    public int getValue();
+    public void setValue(int data);
 }
