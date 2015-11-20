@@ -17,6 +17,7 @@ import selection.SurvivorSelection;
  * @author rjesteban
  */
 public abstract class GeneticAlgorithm {
+    protected int population;
     protected ParentSelection p_selection;
     protected SurvivorSelection s_selection;
     protected Recombination recombination;
