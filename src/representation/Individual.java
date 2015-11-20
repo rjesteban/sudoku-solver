@@ -11,6 +11,6 @@ package representation;
  */
 public interface Individual {
     
-    public int calculateFitness();
+    public double calculateFitness();
     
 }
