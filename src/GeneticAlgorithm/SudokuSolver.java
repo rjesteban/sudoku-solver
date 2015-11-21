@@ -20,7 +20,7 @@ public class SudokuSolver extends GeneticAlgorithm{
     
     @Override
     public Individual solve(String file) {
-        SudokuIndividual initial_state = new SudokuIndividual(readInput(file));
+        initial_state = new SudokuIndividual(readInput(file));
         System.out.println("fitnes: " + initial_state.calculateFitness());
         return null;
     }

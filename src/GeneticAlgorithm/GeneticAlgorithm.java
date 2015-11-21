@@ -8,7 +8,6 @@ package GeneticAlgorithm;
 import mutation.Mutation;
 import recombination.Recombination;
 import representation.Individual;
-import representation.SudokuIndividual;
 import selection.ParentSelection;
 import selection.SurvivorSelection;
 
@@ -17,6 +16,7 @@ import selection.SurvivorSelection;
  * @author rjesteban
  */
 public abstract class GeneticAlgorithm {
+    protected Individual initial_state;
     protected int population;
     protected ParentSelection p_selection;
     protected SurvivorSelection s_selection;
