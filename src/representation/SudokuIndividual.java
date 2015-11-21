@@ -30,27 +30,8 @@ public class SudokuIndividual implements Individual, Comparable<SudokuIndividual
             this.block_rows = this.rows/2;
             this.block_cols = 2;
         }
-        this.initialize();
-<<<<<<< HEAD
-=======
-        
-    }
-    
-    /*
-        Initialize: place zeroes in
-    */
-    private void initialize(){
-        for(SudokuAllele[] chromosome:phenotype){
-            for(SudokuAllele allele:chromosome){
-                if(allele.getValue()==0){
-                    Random r = new Random();
-                    allele.setValue(r.nextInt(8)+1);
-                }
-            }
-        }
-        //this.showPhenotype();
->>>>>>> c8e6708c002dfb47cbb42fb25c4b38a5d84619e4
-    }
+        this.initialize();    
+    }    
     
     private void initialize(){
         for(SudokuAllele[] chromosome:phenotype){
