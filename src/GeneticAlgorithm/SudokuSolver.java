@@ -18,6 +18,10 @@ import representation.SudokuIndividual;
  */
 public class SudokuSolver extends GeneticAlgorithm{
     
+    public SudokuSolver(){
+        super();
+    }
+    
     @Override
     public Individual solve(String file) {
         SudokuIndividual initial_state = new SudokuIndividual(readInput(file));

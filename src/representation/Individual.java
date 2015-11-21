@@ -9,7 +9,7 @@ package representation;
  *
  * @author rjesteban
  */
-public interface Individual {
+public interface Individual{
     
     public double calculateFitness();
     

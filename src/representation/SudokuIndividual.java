@@ -5,17 +5,20 @@
  */
 package representation;
 
+import java.util.Random;
+
 /**
  *
  * @author rjesteban
  */
-public class SudokuIndividual implements Individual{
+public class SudokuIndividual implements Individual, Comparable<SudokuIndividual>{
     public SudokuAllele[][] phenotype;
     public int rows;
     public int cols;
     public int block_rows;
     public int block_cols;
-
+    public double fitness;
+    
     public SudokuIndividual(SudokuAllele[][] phenotype) {
         this.phenotype = phenotype;
         this.rows = phenotype.length;
@@ -27,7 +30,20 @@ public class SudokuIndividual implements Individual{
             this.block_rows = this.rows/2;
             this.block_cols = 2;
         }
+        this.initialize();
     }
+    
+    private void initialize(){
+        for(SudokuAllele[] chromosome:phenotype){
+            for(SudokuAllele allele:chromosome){
+                if(allele.getValue()==0){
+                    Random r = new Random();
+                    allele.setValue(r.nextInt(8)+1);
+                }
+            }
+        }
+        //this.showPhenotype();
+     }
     
     public SudokuAllele[] getGenotype() {
         int[] rep = new int[this.rows*this.cols];
@@ -75,8 +91,8 @@ public class SudokuIndividual implements Individual{
            fitness += calculateColFitness(i);
            fitness += calculateBlockFitness(i);
         }
-        
-        return (-1)*fitness;
+        this.fitness = (-1)*fitness;
+        return this.fitness;
     }
     
     private double calculateRowFitness(int r){
@@ -127,5 +143,23 @@ public class SudokuIndividual implements Individual{
         }
         
         return fitnesss;
+    }
+
+    /**
+     * Descending sort; since we assume GA solves maximization problems
+    */
+    @Override
+    public int compareTo(SudokuIndividual o) {
+        if(this.fitness<o.fitness)
+            return 1;
+        else if(this.fitness>o.fitness)
+            return -1;
+        else
+            return 0;
+    }
+    
+    @Override
+    public String toString(){
+        return String.valueOf(fitness);
     }
 }
