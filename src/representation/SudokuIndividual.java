@@ -5,6 +5,8 @@
  */
 package representation;
 
+import java.util.Random;
+
 /**
  *
  * @author rjesteban
@@ -27,6 +29,23 @@ public class SudokuIndividual implements Individual{
             this.block_rows = this.rows/2;
             this.block_cols = 2;
         }
+        this.initialize();
+        
+    }
+    
+    /*
+        Initialize: place zeroes in
+    */
+    private void initialize(){
+        for(SudokuAllele[] chromosome:phenotype){
+            for(SudokuAllele allele:chromosome){
+                if(allele.getValue()==0){
+                    Random r = new Random();
+                    allele.setValue(r.nextInt(8)+1);
+                }
+            }
+        }
+        //this.showPhenotype();
     }
     
     public SudokuAllele[] getGenotype() {
@@ -60,10 +79,13 @@ public class SudokuIndividual implements Individual{
         determine the worst fitness the individual
         would get, subtract everytime the desired numbers would appear
         once for every column, row, block.
+    
+        worst fitness: (2rc)+(((b_r)*(b_c))^2)
+        in this implementation worst fitness for each column,
+        row, and block, is determined by the dimension of the sudoku board
     */
     @Override
     public double calculateFitness(){
-        //worst fitness: (2rc)+(((b_r)*(b_c))^2)
         double fitness = 0;
         //calculate all rows
         //calculate all cols
