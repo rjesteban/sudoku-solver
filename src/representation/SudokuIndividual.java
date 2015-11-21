@@ -46,16 +46,16 @@ public class SudokuIndividual implements Individual, Comparable<SudokuIndividual
      }
     
     @Override
-    public SudokuAllele[] getGenotype() {
+    public Allele[] getGenotype() {
         SudokuAllele[] genotype = new SudokuAllele[this.rows*this.cols];
         for (int r = 0; r < this.rows; r++) 
             System.arraycopy(phenotype[r], 0, genotype, phenotype[r].length * r, phenotype[r].length);
-        return genotype;
+        return (Allele[]) genotype;
     }
     
     @Override
     public void showGenotype(){
-        for(SudokuAllele allele:getGenotype())
+        for(Allele allele:getGenotype())
             System.out.print(allele.getValue() + " ");
     }
     

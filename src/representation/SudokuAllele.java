@@ -9,7 +9,7 @@ package representation;
  *
  * @author rjesteban
  */
-public class SudokuAllele {
+public class SudokuAllele implements Allele{
     private boolean editable;
     private int value;
 
@@ -25,10 +25,12 @@ public class SudokuAllele {
         return editable;
     }
 
+    @Override
     public int getValue() {
         return value;
     }
 
+    @Override
     public void setValue(int value) {
         this.value = value;
     }

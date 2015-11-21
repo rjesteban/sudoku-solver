@@ -6,6 +6,7 @@
 package GeneticAlgorithm;
 
 import java.util.Arrays;
+import representation.Allele;
 import representation.SudokuIndividual;
 
 /**
@@ -29,8 +30,10 @@ public class Test {
         SudokuIndividual[] ar = {si1, si2, si3, si4, si5};
         Arrays.sort(ar);
         System.out.println("---------");
-        for(SudokuIndividual s: ar)
-            System.out.println(s);
-        
+        for(SudokuIndividual s: ar){
+            for(Allele a: s.getGenotype())
+                System.out.print(a.getValue() + " ");
+            System.out.println("");
+        }
     }
 }
