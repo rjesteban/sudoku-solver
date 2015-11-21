@@ -31,6 +31,25 @@ public class SudokuIndividual implements Individual, Comparable<SudokuIndividual
             this.block_cols = 2;
         }
         this.initialize();
+<<<<<<< HEAD
+=======
+        
+    }
+    
+    /*
+        Initialize: place zeroes in
+    */
+    private void initialize(){
+        for(SudokuAllele[] chromosome:phenotype){
+            for(SudokuAllele allele:chromosome){
+                if(allele.getValue()==0){
+                    Random r = new Random();
+                    allele.setValue(r.nextInt(8)+1);
+                }
+            }
+        }
+        //this.showPhenotype();
+>>>>>>> c8e6708c002dfb47cbb42fb25c4b38a5d84619e4
     }
     
     private void initialize(){
@@ -76,10 +95,13 @@ public class SudokuIndividual implements Individual, Comparable<SudokuIndividual
         determine the worst fitness the individual
         would get, subtract everytime the desired numbers would appear
         once for every column, row, block.
+    
+        worst fitness: (2rc)+(((b_r)*(b_c))^2)
+        in this implementation worst fitness for each column,
+        row, and block, is determined by the dimension of the sudoku board
     */
     @Override
     public double calculateFitness(){
-        //worst fitness: (2rc)+(((b_r)*(b_c))^2)
         double fitness = 0;
         //calculate all rows
         //calculate all cols
