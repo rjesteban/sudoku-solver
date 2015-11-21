@@ -5,9 +5,14 @@
  */
 package GeneticAlgorithm;
 
-import java.util.Arrays;
-import representation.Allele;
+import mutation.CreepMutation;
+import recombination.Recombination;
+import recombination.UniformCrossover;
+import representation.Individual;
+import representation.SudokuAllele;
 import representation.SudokuIndividual;
+import selection.Elitism;
+import selection.TournamentSelection;
 
 /**
  *
@@ -15,25 +20,26 @@ import representation.SudokuIndividual;
  */
 public class Test {
     public static void main(String[] args) {
-        SudokuSolver ga = new SudokuSolver();
-        //ga.solve("sudoku9_01.in");
-        SudokuIndividual si1 = new SudokuIndividual(ga.readInput("sudoku9_01.in"));
-        SudokuIndividual si2 = new SudokuIndividual(ga.readInput("sudoku9_01.in"));
-        SudokuIndividual si3 = new SudokuIndividual(ga.readInput("sudoku9_01.in"));
-        SudokuIndividual si4 = new SudokuIndividual(ga.readInput("sudoku9_01.in"));
-        SudokuIndividual si5 = new SudokuIndividual(ga.readInput("sudoku9_01.in"));
-        System.out.println(si1.calculateFitness());
-        System.out.println(si2.calculateFitness());
-        System.out.println(si3.calculateFitness());
-        System.out.println(si4.calculateFitness());
-        System.out.println(si5.calculateFitness());
-        SudokuIndividual[] ar = {si1, si2, si3, si4, si5};
-        Arrays.sort(ar);
-        System.out.println("---------");
-        for(SudokuIndividual s: ar){
-            for(Allele a: s.getGenotype())
-                System.out.print(a.getValue() + " ");
-            System.out.println("");
-        }
+        SudokuSolver solver = new SudokuSolver();
+        solver.setMethods(new Elitism(solver.Sr), 
+                new TournamentSelection(3, solver.Sr), 
+                new UniformCrossover(solver.pc),
+                new CreepMutation(solver.pm));
+        
+        //survivor, parent, recom, mu
+        solver.solve("sudoku9_01.in").showPhenotype();
+        
+        /*SudokuAllele[][] sa = {{new SudokuAllele(1),new SudokuAllele(2),new SudokuAllele(3),new SudokuAllele(4)},
+                {new SudokuAllele(0),new SudokuAllele(0),new SudokuAllele(0),new SudokuAllele(0)},
+                {new SudokuAllele(0),new SudokuAllele(0),new SudokuAllele(0),new SudokuAllele(0)},
+                {new SudokuAllele(0),new SudokuAllele(0),new SudokuAllele(0),new SudokuAllele(0)}};
+        SudokuIndividual s = new SudokuIndividual(sa);
+        Individual i = s.copy();
+        s.getGenotype()[0].setValue(9);
+        i.showGenotype();
+        System.out.println("");
+        s.showGenotype();
+        
+        Recombination r = new UniformCrossover(0.5);*/
     }
 }

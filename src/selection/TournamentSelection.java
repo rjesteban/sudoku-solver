@@ -31,7 +31,8 @@ public class TournamentSelection implements ParentSelection{
     public Individual[] select(Individual[] candidates) {
         int size = Double.valueOf((1-survival_rate)*candidates.length).intValue();
         Individual[] elites = new Individual[size];
-        for(int i=0; i<elites.length;i++){
+        
+        for (int i=0; i < elites.length; i++) {
             elites[i] = doTournament(pick(candidates));
         }
         return elites;
@@ -48,7 +49,11 @@ public class TournamentSelection implements ParentSelection{
     }
     
     public Individual doTournament(Individual[] chosen){
-        Arrays.sort(chosen);
+        Individual[] clone = new Individual[chosen.length];
+        for(int i = 0; i < clone.length; i++)
+            clone[i] = chosen[i].copy();
+        
+        Arrays.sort(clone);
         return chosen[0];
     }
 }

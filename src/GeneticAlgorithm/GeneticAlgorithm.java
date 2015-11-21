@@ -17,14 +17,26 @@ import selection.SurvivorSelection;
  */
 public abstract class GeneticAlgorithm {
     protected Individual initial_state;
-    protected int population;
     protected ParentSelection p_selection;
     protected SurvivorSelection s_selection;
     protected Recombination recombination;
     protected Mutation mutation;
+    protected int population;
+    protected int max_restarts;
+    protected int max_iterations;
+    protected double pm;
+    protected double pc;
+    protected double Sr;
     
     public GeneticAlgorithm(){
+        max_restarts = 3;
+        max_iterations = 20000;
+        population = 10;
+        Sr = 0.2;
+        pm = 0.2;
+        pc = 0.5;
     }
     
     public abstract Individual solve(String file);
+    public abstract Individual[] generatePopulation(Individual initial_state);
 }

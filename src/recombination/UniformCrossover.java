@@ -22,10 +22,10 @@ public class UniformCrossover implements Recombination {
     
     @Override
     public Individual[] generateOffsprings(Individual[] parent) {
-        Individual[] child = new Individual[parent.length/2];
+        Individual[] child = new Individual[parent.length];
         for (int i = 0; i < child.length; i++) {
             int a = i;
-            int b = a+1;
+            int b = ++i;
             child[a] = mate(parent[a],parent[b]);
             child[b] = mate(parent[b],parent[a]);
         }
@@ -35,14 +35,17 @@ public class UniformCrossover implements Recombination {
     
     private Individual mate(Individual male, Individual female) {
         double[] probability = new double[male.getGenotype().length];
+        Individual child = female.copy();
         Random r = new Random();
-        for (int i = 0; i<male.getGenotype().length; i++ ) {
+        for (int i = 0; i<probability.length; i++ ) {
             probability[i] = r.nextDouble();
-            //do the shizz stuff here
-            
+            //heads
+            if (probability[i]>=this.pc && male.getGenotype()[i].isEditable()) {
+                child.getGenotype()[i].setValue(male.getGenotype()[i].getValue());
+            }
+            //tails: do nothing
         }
-        
-        return null;
+        return child;
     }
     
 }

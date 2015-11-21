@@ -5,10 +5,12 @@
  */
 package mutation;
 
+import representation.Individual;
+
 /**
  *
  * @author rjesteban
  */
 public interface Mutation {
-    
+    public void mutate(Individual[] child);
 }

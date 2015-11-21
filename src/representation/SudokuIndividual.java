@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author rjesteban
  */
-public class SudokuIndividual implements Individual, Comparable<SudokuIndividual>{
+public final class SudokuIndividual implements Individual, Comparable<SudokuIndividual>{
     public SudokuAllele[][] phenotype;
     public int rows;
     public int cols;
@@ -23,23 +23,28 @@ public class SudokuIndividual implements Individual, Comparable<SudokuIndividual
         this.phenotype = phenotype;
         this.rows = phenotype.length;
         this.cols = phenotype[0].length;
-        
+        this.setBlock();
+    }
+    
+    private void setBlock(){
         if (this.rows==9){
             this.block_rows = this.block_cols = 3;
         } else {
             this.block_rows = this.rows/2;
             this.block_cols = 2;
         }
-        this.initialize();    
-    }    
+    }
     
-    private void initialize(){
+    @Override
+    public void randomize(){
         for(SudokuAllele[] chromosome:phenotype){
             for(SudokuAllele allele:chromosome){
-                if(allele.getValue()==0){
+                if(allele.getValue()==0 || allele.isEditable()) {
                     Random r = new Random();
-                    allele.setValue(r.nextInt(8)+1);
+                    allele.setValue(r.nextInt(this.rows-1)+1);
+                    allele.setEditable(true);
                 }
+                allele.setEditable(false);
             }
         }
         //this.showPhenotype();
@@ -47,10 +52,10 @@ public class SudokuIndividual implements Individual, Comparable<SudokuIndividual
     
     @Override
     public Allele[] getGenotype() {
-        SudokuAllele[] genotype = new SudokuAllele[this.rows*this.cols];
+        Allele[] genotype = new Allele[this.rows*this.cols];
         for (int r = 0; r < this.rows; r++) 
             System.arraycopy(phenotype[r], 0, genotype, phenotype[r].length * r, phenotype[r].length);
-        return (Allele[]) genotype;
+        return genotype;
     }
     
     @Override
@@ -66,6 +71,10 @@ public class SudokuIndividual implements Individual, Comparable<SudokuIndividual
                 System.out.print(phenotype1[c].getValue() + " ");
             System.out.println();
         }
+    }
+    
+    public SudokuAllele[][] getPhenotype(){
+        return this.phenotype;
     }
     
     /*
@@ -85,18 +94,17 @@ public class SudokuIndividual implements Individual, Comparable<SudokuIndividual
     */
     @Override
     public double calculateFitness(){
-        double fitness = 0;
+        double _fitness = 0;
         //calculate all rows
         //calculate all cols
         //calculate all blocks
         
-        
         for(int i=0; i<this.rows; i++) {
-           fitness += calculateRowFitness(i);
-           fitness += calculateColFitness(i);
-           fitness += calculateBlockFitness(i);
+           _fitness += calculateRowFitness(i);
+           _fitness += calculateColFitness(i);
+           _fitness += calculateBlockFitness(i);
         }
-        this.fitness = (-1)*fitness;
+        this.fitness = (-1)*_fitness;
         return this.fitness;
     }
     
@@ -166,5 +174,18 @@ public class SudokuIndividual implements Individual, Comparable<SudokuIndividual
     @Override
     public String toString(){
         return String.valueOf(fitness);
+    }
+
+    @Override
+    public Individual copy() {
+        SudokuAllele[][] sa = new SudokuAllele[this.rows][this.cols];
+         for (int r = 0; r < phenotype.length; r++) {
+            for (int c = 0; c < phenotype[0].length; c++) 
+                sa[r][c] = new SudokuAllele(this.phenotype[r][c].getValue());
+        }
+        
+        Individual copy = new SudokuIndividual(sa);
+        copy.calculateFitness();
+        return copy;
     }
 }

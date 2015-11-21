@@ -10,6 +10,8 @@ package representation;
  * @author rjesteban
  */
 public interface Allele {
+    public boolean isEditable();
     public int getValue();
     public void setValue(int data);
+    public void setEditable(boolean value);
 }

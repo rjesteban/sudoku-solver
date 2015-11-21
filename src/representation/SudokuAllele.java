@@ -18,11 +18,16 @@ public class SudokuAllele implements Allele{
             editable = true;
         editable = false;
         this.value = value;
-             
     }
     
+    @Override
     public boolean isEditable() {
         return editable;
+    }
+    
+    @Override
+    public void setEditable(boolean value){
+        editable = value;
     }
 
     @Override

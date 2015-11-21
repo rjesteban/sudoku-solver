@@ -28,10 +28,14 @@ public class Elitism implements SurvivorSelection{
     @Override
     public Individual[] select(Individual[] candidate) {
         int size = Double.valueOf(survival_rate*candidate.length).intValue();
-        Individual[] survivor;
-        survivor = new Individual[size];
-        Arrays.sort(candidate);
-        System.arraycopy(candidate, 0, survivor, 0, size);
+        Individual[] survivor = new Individual[size];
+        Individual[] copy = new Individual[candidate.length];
+        for(int i = 0; i < copy.length; i++)
+            copy[i] = candidate[i].copy();
+        Arrays.sort(copy);
+        for(int i = 0; i< size; i++){
+            survivor[i] = copy[i].copy();
+        }
         return survivor;
     }
 }

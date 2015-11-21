@@ -9,10 +9,11 @@ package representation;
  *
  * @author rjesteban
  */
-public interface Individual{
-    
+public interface Individual {
     public double calculateFitness();
     public Allele[] getGenotype();
     public void showGenotype();
     public void showPhenotype();
+    public Individual copy();
+    public void randomize();
 }
