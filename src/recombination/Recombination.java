@@ -5,10 +5,12 @@
  */
 package recombination;
 
+import representation.Individual;
+
 /**
  *
  * @author rjesteban
  */
 public interface Recombination {
-    
+    public Individual[] generateOffsprings(Individual[] parent);
 }

@@ -12,5 +12,7 @@ package representation;
 public interface Individual{
     
     public double calculateFitness();
-    
+    public Allele[] getGenotype();
+    public void showGenotype();
+    public void showPhenotype();
 }
