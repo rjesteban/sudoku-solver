@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mutation;
+package GeneticAlgorithm.mutation;
 
 import java.util.Random;
-import representation.Allele;
-import representation.Individual;
+import GeneticAlgorithm.representation.Allele;
+import GeneticAlgorithm.representation.Individual;
 
 /**
  *

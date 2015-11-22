@@ -5,10 +5,10 @@
  */
 package GeneticAlgorithm;
 
-import mutation.CreepMutation;
-import recombination.UniformCrossover;
-import selection.Elitism;
-import selection.TournamentSelection;
+import GeneticAlgorithm.mutation.CreepMutation;
+import GeneticAlgorithm.recombination.UniformCrossover;
+import GeneticAlgorithm.selection.Elitism;
+import GeneticAlgorithm.selection.TournamentSelection;
 
 /**
  *

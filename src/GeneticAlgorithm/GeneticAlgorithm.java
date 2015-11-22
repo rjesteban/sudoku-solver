@@ -5,11 +5,11 @@
  */
 package GeneticAlgorithm;
 
-import mutation.Mutation;
-import recombination.Recombination;
-import representation.Individual;
-import selection.ParentSelection;
-import selection.SurvivorSelection;
+import GeneticAlgorithm.mutation.Mutation;
+import GeneticAlgorithm.recombination.Recombination;
+import GeneticAlgorithm.representation.Individual;
+import GeneticAlgorithm.selection.ParentSelection;
+import GeneticAlgorithm.selection.SurvivorSelection;
 
 /**
  *

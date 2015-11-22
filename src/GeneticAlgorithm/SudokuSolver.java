@@ -8,13 +8,13 @@ package GeneticAlgorithm;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-import mutation.Mutation;
-import recombination.Recombination;
-import representation.Individual;
-import representation.SudokuAllele;
-import representation.SudokuIndividual;
-import selection.ParentSelection;
-import selection.SurvivorSelection;
+import GeneticAlgorithm.mutation.Mutation;
+import GeneticAlgorithm.recombination.Recombination;
+import GeneticAlgorithm.representation.Individual;
+import GeneticAlgorithm.representation.SudokuAllele;
+import GeneticAlgorithm.representation.SudokuIndividual;
+import GeneticAlgorithm.selection.ParentSelection;
+import GeneticAlgorithm.selection.SurvivorSelection;
 
 /**
  *

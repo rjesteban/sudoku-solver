@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package selection;
+package GeneticAlgorithm.selection;
 
 import java.util.Arrays;
-import representation.Individual;
+import GeneticAlgorithm.representation.Individual;
 
 /**
  *

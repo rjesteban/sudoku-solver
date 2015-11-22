@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mutation;
+package GeneticAlgorithm.selection;
 
-import representation.Individual;
+import GeneticAlgorithm.representation.Individual;
 
 /**
  *
  * @author rjesteban
  */
-public interface Mutation {
-    public void mutate(Individual[] child);
+public interface SurvivorSelection {
+    
+    public String getName();
+    public Individual[] select(Individual[] candidates);
 }
