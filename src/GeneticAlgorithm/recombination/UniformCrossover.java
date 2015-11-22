@@ -46,4 +46,9 @@ public class UniformCrossover implements Recombination {
         return child;
     }
     
+    @Override
+    public String toString(){
+        return "Crossover: Uniform Crossover";
+    }
+    
 }

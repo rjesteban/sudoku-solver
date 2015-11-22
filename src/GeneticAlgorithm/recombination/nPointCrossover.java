@@ -70,4 +70,9 @@ public class nPointCrossover implements Recombination{
             this.breakpoint[i] = bpoints.get(i);
         }
     }
+    
+    @Override
+    public String toString(){
+        return "Recombination: N-Point Crossover";
+    }
 }

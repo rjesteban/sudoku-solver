@@ -12,6 +12,5 @@ import GeneticAlgorithm.representation.Individual;
  * @author rjesteban
  */
 public interface ParentSelection {
-    public String getName();
     public Individual[] select(Individual[] candidates);
 }

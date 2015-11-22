@@ -21,7 +21,7 @@ public class Elitism implements SurvivorSelection{
     
     
     @Override
-    public String getName() {
+    public String toString() {
         return "Parent Selection: Elitism";
     }
 
@@ -29,12 +29,9 @@ public class Elitism implements SurvivorSelection{
     public Individual[] select(Individual[] candidate) {
         int size = Double.valueOf(survival_rate*candidate.length).intValue();
         Individual[] survivor = new Individual[size];
-        Individual[] copy = new Individual[candidate.length];
-        for(int i = 0; i < copy.length; i++)
-            copy[i] = candidate[i].copy();
-        Arrays.sort(copy);
+        Arrays.sort(candidate);
         for(int i = 0; i< size; i++){
-            survivor[i] = copy[i];
+            survivor[i] = candidate[i];
         }
         return survivor;
     }

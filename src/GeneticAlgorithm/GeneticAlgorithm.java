@@ -16,17 +16,20 @@ import GeneticAlgorithm.selection.SurvivorSelection;
  * @author rjesteban
  */
 public abstract class GeneticAlgorithm {
-    protected Individual initial_state;
-    protected ParentSelection p_selection;
-    protected SurvivorSelection s_selection;
-    protected Recombination recombination;
-    protected Mutation mutation;
+    public Individual initial_state;
+    public ParentSelection p_selection;
+    public SurvivorSelection s_selection;
+    public Recombination recombination;
+    public Mutation mutation;
     protected int population;
     protected int max_restarts;
     protected int max_iterations;
     public double pm;
     public double pc;
     public double Sr;
+    public int restart;
+    public int generation;
+    public boolean isSolved;
     
     public GeneticAlgorithm(){
         max_restarts = 3;
@@ -35,6 +38,23 @@ public abstract class GeneticAlgorithm {
         Sr = 0.2;
         pm = 0.01;
         pc = 0.5;
+        isSolved = false;
+    }
+    
+    public int getPopulation(){
+        return this.population;
+    }
+    
+    public int getMaxRestarts(){
+        return this.max_restarts;
+    }
+    
+    public int getMaxGenerations(){
+        return this.max_iterations;
+    }
+    
+    public boolean isSolved(){
+        return this.isSolved;
     }
     
     public void setMethods(SurvivorSelection ss, ParentSelection ps, 

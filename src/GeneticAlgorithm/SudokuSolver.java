@@ -8,13 +8,9 @@ package GeneticAlgorithm;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-import GeneticAlgorithm.mutation.Mutation;
-import GeneticAlgorithm.recombination.Recombination;
 import GeneticAlgorithm.representation.Individual;
 import GeneticAlgorithm.representation.SudokuAllele;
 import GeneticAlgorithm.representation.SudokuIndividual;
-import GeneticAlgorithm.selection.ParentSelection;
-import GeneticAlgorithm.selection.SurvivorSelection;
 
 /**
  *
@@ -41,10 +37,9 @@ public class SudokuSolver extends GeneticAlgorithm {
     public Individual solve(String file) {
             initial_state = new SudokuIndividual(readInput(file));
             
-            Individual[] individual = generatePopulation(initial_state);
-            
             //stopping critera: reach
             for (int restarts = 0; restarts < this.max_restarts; restarts++) {
+                Individual[] individual = generatePopulation(initial_state);
                 boolean reached = maxFitnessReached(individual, 0);
                 for (int iterations = 0;
                         iterations < max_iterations;
@@ -56,21 +51,18 @@ public class SudokuSolver extends GeneticAlgorithm {
                     Individual[] offspring = this.recombination.generateOffsprings(parent);
                     individual = this.combine(survivor, offspring);
                     this.mutation.mutate(individual);
-                    
+                    this.generation = iterations;
+                    this.restart = restarts;
                 }
-                if (reached)
+                if (reached){
+                    this.isSolved = true;
                     return maxFitnessQualifier(individual);
+                }
                 else{
                     System.out.println("-------Random Restart #" + restarts + " ");
                 }
             }
-            
-            
-            
-            //System.out.println("fitness: " + initial_state.calculateFitness());
-            throw new UnsupportedOperationException("Our GA implementation can't "
-                    + "solve it. The board is too complicated");
-     
+            return null;
     }
     
     public Individual[] combine(Individual[] survivor, Individual[] offspring){
