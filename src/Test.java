@@ -64,7 +64,7 @@ public class Test {
             String representationUsed, 
             String runningTime, String filename){
         
-        String file_name = filename.split(".")[0];
+        String file_name = filename.split("\\s.\\s")[0];
         file_name += ".txt";
         
         PrintWriter writer = null;
@@ -87,7 +87,7 @@ public class Test {
             writer.println("Number of population restarts: " + ga.restart);
             writer.println("Phenotype of Best performing individual: ");
             writer.println("Faye di nko kbaw ani, himu nalang bago class nga muformat"
-                    + "sa puzzle");
+                    + " sa puzzle");
             if(ga.isSolved())
                 writer.println("The sudoku puzzle was solved");
             else
