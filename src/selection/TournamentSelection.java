@@ -54,7 +54,7 @@ public class TournamentSelection implements ParentSelection{
     public Individual doTournament(Individual[] chosen){
         Individual[] clone = new Individual[chosen.length];
         for(int i = 0; i < clone.length; i++)
-            clone[i] = chosen[i];
+            clone[i] = chosen[i].copy();
         
         Arrays.sort(clone);
         //System.out.println("winner: " + chosen[0]);

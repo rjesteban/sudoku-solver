@@ -28,12 +28,14 @@ public class CreepMutation implements Mutation{
     
     private void doCreep(Allele[] chromosome, int iter){
         Random s = new Random();
+        int bound = Double.valueOf(Math.sqrt(chromosome.length)).intValue();
         for(int i = 0; i < chromosome.length; i++){
             double prob = Math.random();
             if (prob <= this.pm && chromosome[i].isEditable()) {
                 //System.out.println("creep[" + iter + "]");
                 chromosome[i].setValue(
-                        s.nextInt(Double.valueOf(Math.sqrt(chromosome.length)).intValue()-1)+1);
+                        ((chromosome[i].getValue()+s.nextInt())%bound)+1
+                                );
             }
         }
     }

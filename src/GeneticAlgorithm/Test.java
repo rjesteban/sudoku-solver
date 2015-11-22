@@ -17,6 +17,8 @@ import selection.TournamentSelection;
 public class Test {
     public static void main(String[] args) {
         
+        long start = System.currentTimeMillis();
+        
         GeneticAlgorithm solver = new SudokuSolver();
         solver.setMethods(new Elitism(solver.Sr), 
                 new TournamentSelection(3, solver.Sr), 
@@ -24,17 +26,20 @@ public class Test {
                 new CreepMutation(solver.pm));
         solver.solve("sudoku9_01.in").showPhenotype();
         
-        /*
-        SudokuIndividual si = new SudokuIndividual(new SudokuSolver().readInput("sudoku9_01.in"));
-        si.randomize();
-        si.calculateFitness();
-        si.showGenotype();
-        Individual s = si.copy();
-        si.getGenotype()[0].setValue(100);
-        si.showGenotype();
-        System.out.println(si);
-        s.showGenotype();
-        System.out.println(s);
-        */
+          //==============
+        long end = System.currentTimeMillis();
+        showTimeOut(start, end);
+
+    }
+    
+    
+    public static void showTimeOut(long start, long end){
+        long dif = end - start;
+        if (dif > 1000) {
+            dif = (end - start) / 1000;
+            System.out.println("Speed:" + dif + " seconds");
+        } else {
+            System.out.println("Speed:" + dif + " milliseconds");
+        }
     }
 }
