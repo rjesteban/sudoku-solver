@@ -5,7 +5,6 @@
  */
 package recombination;
 
-import java.util.Random;
 import representation.Individual;
 
 /**
@@ -26,25 +25,24 @@ public class UniformCrossover implements Recombination {
         for (int i = 0; i < child.length; i++) {
             int a = i;
             int b = ++i;
-            child[a] = mate(parent[a],parent[b]);
-            child[b] = mate(parent[b],parent[a]);
+            child[a] = mate(parent[a].copy(),parent[b].copy());
+            child[b] = mate(parent[b].copy(),parent[a].copy());
         }
         return child;
     }
 
     
-    private Individual mate(Individual male, Individual female) {
-        double[] probability = new double[male.getGenotype().length];
-        Individual child = female.copy();
-        Random r = new Random();
-        for (int i = 0; i<probability.length; i++ ) {
-            probability[i] = r.nextDouble();
+    private Individual mate(Individual head, Individual tail) {
+        Individual child = tail.copy();
+        for (int i = 0; i<head.getGenotype().length; i++ ) {
+            double probability = Math.random();
             //heads
-            if (probability[i]>=this.pc && male.getGenotype()[i].isEditable()) {
-                child.getGenotype()[i].setValue(male.getGenotype()[i].getValue());
+            if (probability>=this.pc && head.getGenotype()[i].isEditable()) {
+                child.getGenotype()[i].setValue(head.getGenotype()[i].getValue());
             }
             //tails: do nothing
         }
+        child.calculateFitness();
         return child;
     }
     

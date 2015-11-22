@@ -34,7 +34,7 @@ public class Elitism implements SurvivorSelection{
             copy[i] = candidate[i].copy();
         Arrays.sort(copy);
         for(int i = 0; i< size; i++){
-            survivor[i] = copy[i].copy();
+            survivor[i] = copy[i];
         }
         return survivor;
     }

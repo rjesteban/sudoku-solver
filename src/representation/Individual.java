@@ -11,9 +11,11 @@ package representation;
  */
 public interface Individual {
     public double calculateFitness();
+    public void setFitness(double fitness);
     public Allele[] getGenotype();
     public void showGenotype();
     public void showPhenotype();
     public Individual copy();
     public void randomize();
+    public void setPhenotype(Allele[] genotype);
 }

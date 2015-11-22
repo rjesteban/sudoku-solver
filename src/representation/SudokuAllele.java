@@ -39,4 +39,11 @@ public class SudokuAllele implements Allele{
     public void setValue(int value) {
         this.value = value;
     }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + this.value;
+        return hash;
+    }
 }

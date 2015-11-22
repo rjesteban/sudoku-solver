@@ -22,18 +22,18 @@ public class CreepMutation implements Mutation{
     @Override
     public void mutate(Individual[] child) {
         for(int i = 0; i < child.length; i++) {
-            doCreep(child[i].getGenotype());
+            doCreep(child[i].getGenotype(), i);
         }
     }
     
-    private void doCreep(Allele[] chromosome){
-        double[] prob = new double[chromosome.length];
-        Random r = new Random();
+    private void doCreep(Allele[] chromosome, int iter){
         Random s = new Random();
-        for(int i = 0; i < prob.length; i++){
-            prob[i] = r.nextDouble();
-            if (prob[i] < this.pm && chromosome[i].isEditable()) {
-                chromosome[i].setValue(s.nextInt(chromosome.length-1)+1);
+        for(int i = 0; i < chromosome.length; i++){
+            double prob = Math.random();
+            if (prob <= this.pm && chromosome[i].isEditable()) {
+                //System.out.println("creep[" + iter + "]");
+                chromosome[i].setValue(
+                        s.nextInt(Double.valueOf(Math.sqrt(chromosome.length)).intValue()-1)+1);
             }
         }
     }

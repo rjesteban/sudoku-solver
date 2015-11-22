@@ -24,6 +24,7 @@ public final class SudokuIndividual implements Individual, Comparable<SudokuIndi
         this.rows = phenotype.length;
         this.cols = phenotype[0].length;
         this.setBlock();
+        //randomize();
     }
     
     private void setBlock(){
@@ -35,6 +36,33 @@ public final class SudokuIndividual implements Individual, Comparable<SudokuIndi
         }
     }
     
+    public SudokuIndividual(Allele[] genotype){
+        this.rows = Double.valueOf(Math.sqrt(genotype.length)).intValue();
+        this.cols = this.rows;
+        this.setBlock();
+        setPhenotype(genotype);
+    }
+    
+    @Override
+    public void setPhenotype(Allele[] genotype){
+        /*for(int r = 0; r < this.rows; r++){
+            for(int c = 0; c < this.cols; c++){
+                this.phenotype[r][c] = new SudokuAllele(genotype[c + rows]);
+            }
+        }*/
+        this.phenotype = new SudokuAllele[rows][cols];
+        int row = -1;
+        for(int r = 0; r < genotype.length; r++){
+            if(r%cols == 0){
+                row++;
+            }
+            this.phenotype[row][r%cols] = new SudokuAllele(genotype[r].getValue());
+            this.phenotype[row][r%cols].setEditable(genotype[r].isEditable());
+        }
+        calculateFitness();
+    }
+    
+    
     @Override
     public void randomize(){
         for(SudokuAllele[] chromosome:phenotype){
@@ -44,7 +72,8 @@ public final class SudokuIndividual implements Individual, Comparable<SudokuIndi
                     allele.setValue(r.nextInt(this.rows-1)+1);
                     allele.setEditable(true);
                 }
-                allele.setEditable(false);
+                else
+                    allele.setEditable(false);
             }
         }
         //this.showPhenotype();
@@ -62,6 +91,7 @@ public final class SudokuIndividual implements Individual, Comparable<SudokuIndi
     public void showGenotype(){
         for(Allele allele:getGenotype())
             System.out.print(allele.getValue() + " ");
+        System.out.println();
     }
     
     @Override
@@ -163,9 +193,9 @@ public final class SudokuIndividual implements Individual, Comparable<SudokuIndi
     */
     @Override
     public int compareTo(SudokuIndividual o) {
-        if(this.fitness<o.fitness)
+        if (this.fitness < o.fitness)
             return 1;
-        else if(this.fitness>o.fitness)
+        else if (this.fitness > o.fitness)
             return -1;
         else
             return 0;
@@ -173,19 +203,29 @@ public final class SudokuIndividual implements Individual, Comparable<SudokuIndi
     
     @Override
     public String toString(){
-        return String.valueOf(fitness);
+        return String.valueOf(this.calculateFitness());
     }
 
     @Override
     public Individual copy() {
+        //System.out.println("copy:");
         SudokuAllele[][] sa = new SudokuAllele[this.rows][this.cols];
          for (int r = 0; r < phenotype.length; r++) {
-            for (int c = 0; c < phenotype[0].length; c++) 
+            for (int c = 0; c < phenotype[0].length; c++) {
+                //String s = String.valueOf(this.phenotype[r][c].getValue());
+                //Integer val = Integer.valueOf(s);
                 sa[r][c] = new SudokuAllele(this.phenotype[r][c].getValue());
+                sa[r][c].setEditable(this.phenotype[r][c].isEditable());
+            }
         }
-        
-        Individual copy = new SudokuIndividual(sa);
-        copy.calculateFitness();
+        //System.out.println("");
+        SudokuIndividual copy = new SudokuIndividual(sa);
+        copy.setFitness(fitness);
         return copy;
+    }
+    
+    @Override
+    public void setFitness(double fitness){
+        this.fitness = fitness;
     }
 }

@@ -30,13 +30,20 @@ public abstract class GeneticAlgorithm {
     
     public GeneticAlgorithm(){
         max_restarts = 3;
-        max_iterations = 20000;
+        max_iterations = 50000;
         population = 10;
         Sr = 0.2;
-        pm = 0.2;
+        pm = 0.05;
         pc = 0.5;
     }
     
+    public void setMethods(SurvivorSelection ss, ParentSelection ps, 
+            Recombination rc, Mutation mu){
+        this.s_selection = ss;
+        this.p_selection = ps;
+        this.recombination = rc;
+        this.mutation = mu;
+    }
     public abstract Individual solve(String file);
     public abstract Individual[] generatePopulation(Individual initial_state);
 }

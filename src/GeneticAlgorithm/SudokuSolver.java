@@ -37,14 +37,6 @@ public class SudokuSolver extends GeneticAlgorithm {
         this.max_restarts = max_restarts;
     }
     
-    public void setMethods(SurvivorSelection ss, ParentSelection ps, 
-            Recombination rc, Mutation mu){
-        this.s_selection = ss;
-        this.p_selection = ps;
-        this.recombination = rc;
-        this.mutation = mu;
-    }
-    
     @Override
     public Individual solve(String file) {
             initial_state = new SudokuIndividual(readInput(file));
@@ -55,27 +47,22 @@ public class SudokuSolver extends GeneticAlgorithm {
             for (int restarts = 0; restarts < this.max_restarts; restarts++) {
                 boolean reached = maxFitnessReached(individual, 0);
                 for (int iterations = 0;
-                        iterations < this.max_iterations || reached;
+                        iterations < max_iterations;
                         iterations++, reached = maxFitnessReached(individual, iterations)) {
-                    
-                    //Select survivors
+                    if(reached)
+                        break;
                     Individual[] survivor = this.s_selection.select(individual);
-                    
-                    //select parents
                     Individual[] parent = this.p_selection.select(individual);
-                    
-                    //generate offsprings
                     Individual[] offspring = this.recombination.generateOffsprings(parent);
-                    
-                    //new population = survivors+offsprings
                     individual = this.combine(survivor, offspring);
-                    
-                    //apply mutation
                     this.mutation.mutate(individual);
+                    
                 }
-                //get that individual
                 if (reached)
                     return maxFitnessQualifier(individual);
+                else{
+                    System.out.println("-------Random Restart #" + restarts + " ");
+                }
             }
             
             
@@ -148,9 +135,14 @@ public class SudokuSolver extends GeneticAlgorithm {
     public Individual[] generatePopulation(Individual initial_state) {
         Individual[] individual = new SudokuIndividual[this.population];
         for (int i = 0; i < this.population; i++) {
+            //initial_state.showGenotype();
             individual[i] = initial_state.copy();
+            //individual[i].showGenotype();
             individual[i].randomize();
+            //individual[i].showGenotype();
+            //System.out.println("---------");
         }
+        //System.out.println("///---------------///");
         return individual;
     }
 }
