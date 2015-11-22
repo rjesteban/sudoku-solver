@@ -31,7 +31,7 @@ public class Test {
         solver.setMethods(new Elitism(solver.Sr), 
                 new TournamentSelection(3, solver.Sr), 
                 /*new UniformCrossover(solver.pc),*/
-                new nPointCrossover(3),
+                new nPointCrossover(2),
                /*new CreepMutation(solver.pm)*/
                new RandomResetingMutation(solver.pm)
         );
