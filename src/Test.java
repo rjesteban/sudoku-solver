@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GeneticAlgorithm;
 
+
+import GeneticAlgorithm.GeneticAlgorithm;
+import GeneticAlgorithm.SudokuSolver;
 import GeneticAlgorithm.mutation.CreepMutation;
 import GeneticAlgorithm.recombination.UniformCrossover;
 import GeneticAlgorithm.selection.Elitism;

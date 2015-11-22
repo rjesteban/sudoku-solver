@@ -24,9 +24,9 @@ public abstract class GeneticAlgorithm {
     protected int population;
     protected int max_restarts;
     protected int max_iterations;
-    protected double pm;
-    protected double pc;
-    protected double Sr;
+    public double pm;
+    public double pc;
+    public double Sr;
     
     public GeneticAlgorithm(){
         max_restarts = 3;
@@ -44,6 +44,7 @@ public abstract class GeneticAlgorithm {
         this.recombination = rc;
         this.mutation = mu;
     }
+    
     public abstract Individual solve(String file);
     public abstract Individual[] generatePopulation(Individual initial_state);
 }
