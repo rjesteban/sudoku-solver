@@ -8,7 +8,7 @@
 import GeneticAlgorithm.GeneticAlgorithm;
 import GeneticAlgorithm.SudokuSolver;
 import GeneticAlgorithm.mutation.CreepMutation;
-import GeneticAlgorithm.recombination.UniformCrossover;
+import GeneticAlgorithm.recombination.nPointCrossover;
 import GeneticAlgorithm.selection.Elitism;
 import GeneticAlgorithm.selection.TournamentSelection;
 
@@ -24,7 +24,8 @@ public class Test {
         GeneticAlgorithm solver = new SudokuSolver();
         solver.setMethods(new Elitism(solver.Sr), 
                 new TournamentSelection(3, solver.Sr), 
-                new UniformCrossover(solver.pc),
+                /*new UniformCrossover(solver.pc),*/
+                new nPointCrossover(3),
                 new CreepMutation(solver.pm));
         solver.solve("sudoku9_01.in").showPhenotype();
         
