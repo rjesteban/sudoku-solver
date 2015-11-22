@@ -65,7 +65,7 @@ public class Test {
             String runningTime, String filename){
         
         String file_name = filename.split("\\s.\\s")[0];
-        file_name += ".txt";
+        file_name += ".out";
         
         PrintWriter writer = null;
         try {
