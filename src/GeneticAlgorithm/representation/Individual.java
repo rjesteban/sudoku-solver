@@ -17,5 +17,6 @@ public interface Individual {
     public void showPhenotype();
     public Individual copy();
     public void randomize();
+    public String getPhenotype();
     public void setPhenotype(Allele[] genotype);
 }

@@ -24,6 +24,8 @@ import java.util.logging.Logger;
  */
 public class Test {
     public static void main(String[] args) {
+        //String filename = "sudoku4x4.in";
+        //String filename = "sudoku6x6.in";
         String filename = "sudoku9_01.in";
         long start = System.currentTimeMillis();
         //==================
@@ -86,8 +88,7 @@ public class Test {
             writer.println(runningTime);
             writer.println("Number of population restarts: " + ga.restart);
             writer.println("Phenotype of Best performing individual: ");
-            writer.println("Faye di nko kbaw ani, himu nalang bago class nga muformat"
-                    + " sa puzzle");
+            writer.println(fittest.getPhenotype());
             if(ga.isSolved())
                 writer.println("The sudoku puzzle was solved");
             else

@@ -31,8 +31,8 @@ public final class SudokuIndividual implements Individual, Comparable<SudokuIndi
         if (this.rows==9){
             this.block_rows = this.block_cols = 3;
         } else {
-            this.block_rows = this.rows/2;
-            this.block_cols = 2;
+            this.block_cols = this.rows/2;
+            this.block_rows = 2;
         }
     }
     
@@ -96,15 +96,39 @@ public final class SudokuIndividual implements Individual, Comparable<SudokuIndi
     
     @Override
     public void showPhenotype(){
-        for (SudokuAllele[] phenotype1 : phenotype) {
+        /*for (SudokuAllele[] phenotype1 : phenotype) {
             for(int c = 0; c < phenotype[0].length; c++)
                 System.out.print(phenotype1[c].getValue() + " ");
             System.out.println();
+        }*/
+        for(int r = 0; r < this.rows; r++){
+            for(int c = 0; c < this.cols; c++){
+                System.out.print(phenotype[r][c].getValue()+" ");
+                if ((c+1)%this.block_cols == 0 && c != 0)
+                    System.out.print("   ");
+                if ((c+1)==this.cols)
+                    System.out.print("\n");
+            }
+            if ((r+1)%this.block_rows == 0 && r != 0)
+                System.out.print("\n");
         }
     }
     
-    public SudokuAllele[][] getPhenotype(){
-        return this.phenotype;
+    @Override
+    public String getPhenotype(){
+        String s = "";
+        for(int r = 0; r < this.rows; r++){
+            for(int c = 0; c < this.cols; c++){
+                s+=phenotype[r][c].getValue()+" ";
+                if ((c+1)%this.block_cols == 0 && c != 0)
+                    s+="   ";
+                if ((c+1)==this.cols)
+                    s+="\n";
+            }
+            if ((r+1)%this.block_rows == 0 && r != 0)
+                s+="\n";
+        }
+        return s;
     }
     
     /*
@@ -170,8 +194,8 @@ public final class SudokuIndividual implements Individual, Comparable<SudokuIndi
         double fitnesss = this.rows;
         int[] w = new int[this.rows];
         
-        for(int row = block*this.block_rows%this.rows, r = 0,i = 0; r < this.block_rows; r++){            
-            for(int col = (block/this.block_cols)*this.block_cols, c = 0; c < this.block_cols; c++, i++){
+        for(int row = (block/this.block_rows)*this.block_rows, r = 0,i = 0; r < this.block_rows; r++){            
+            for(int col =block*this.block_cols%this.cols, c = 0; c < this.block_cols; c++, i++){
                 w[i] = this.phenotype[row+r][col+c].getValue();
             }
         }

@@ -20,6 +20,11 @@ public class CreepMutation implements Mutation{
     }
     
     @Override
+    public String toString(){
+        return "Mutation: Creep Mutation";
+    }
+    
+    @Override
     public void mutate(Individual[] child) {
         for(int i = 0; i < child.length; i++) {
             doCreep(child[i].getGenotype());

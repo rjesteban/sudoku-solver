@@ -73,6 +73,6 @@ public class nPointCrossover implements Recombination{
     
     @Override
     public String toString(){
-        return "Recombination: N-Point Crossover";
+        return "Recombination: N-Point Crossover (" + breakpoint.length + " points)";
     }
 }
