@@ -11,10 +11,10 @@ import GeneticAlgorithm.representation.Individual;
  *
  * @author rjesteban
  */
-public class RandomResetingMutation implements Mutation{
+public class RandomResettingMutation implements Mutation{
     private final double pm;
     
-    public RandomResetingMutation(double pm){
+    public RandomResettingMutation(double pm){
         this.pm = pm;
     }
     
@@ -40,7 +40,7 @@ public class RandomResetingMutation implements Mutation{
     
     @Override
     public String toString(){
-        return "Mutation: Random Reseting";
+        return "Mutation: Random Resetting";
     }
     
 }

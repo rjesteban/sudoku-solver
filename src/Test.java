@@ -37,7 +37,7 @@ public class Test {
                 /*new UniformCrossover(solver.pc),*/
                 new nPointCrossover(3),
                /*new CreepMutation(solver.pm)*/
-               new RandomResetingMutation(solver.pm)
+               new RandomResettingMutation(solver.pm)
         );
         Individual fittest = solver.solve(filename);
         fittest.showPhenotype();
