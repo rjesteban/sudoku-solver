@@ -27,7 +27,8 @@ public class CreepMutation implements Mutation{
     @Override
     public void mutate(Individual[] child) {
         for(int i = 0; i < child.length; i++) {
-            doCreep(child[i].getGenotype());
+            if(Math.random()<pm)
+                doCreep(child[i].getGenotype());
         }
     }
     

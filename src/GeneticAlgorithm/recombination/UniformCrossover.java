@@ -25,8 +25,10 @@ public class UniformCrossover implements Recombination {
         for (int i = 0; i < child.length; i++) {
             int a = i;
             int b = ++i;
-            child[a] = crossover(parent[a].copy(),parent[b].copy());
-            child[b] = crossover(parent[b].copy(),parent[a].copy());
+            if(Math.random()<this.pc){
+                child[a] = crossover(parent[a].copy(),parent[b].copy());
+                child[b] = crossover(parent[b].copy(),parent[a].copy());
+            }
         }
         return child;
     }

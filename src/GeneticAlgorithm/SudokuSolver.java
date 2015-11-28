@@ -131,7 +131,6 @@ public class SudokuSolver extends GeneticAlgorithm {
     public Individual[] generatePopulation(Individual initial_state) {
         Individual[] individual = new SudokuIndividual[this.population];
         for (int i = 0; i < this.population; i++) {
-            //initial_state.showGenotype();
             individual[i] = initial_state.copy();
             //individual[i].showGenotype();
             individual[i].randomize();

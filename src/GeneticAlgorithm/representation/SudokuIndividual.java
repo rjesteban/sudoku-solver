@@ -12,7 +12,7 @@ import java.util.Random;
  *
  * @author rjesteban
  */
-public final class SudokuIndividual implements Individual{
+public class SudokuIndividual implements Individual{
     public SudokuAllele[][] phenotype;
     public int rows;
     public int cols;

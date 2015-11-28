@@ -37,7 +37,7 @@ public abstract class GeneticAlgorithm {
         population = 10;
         Sr = 0.2;
         pm = 0.01;
-        pc = 0.5;
+        pc = 0.9;
         isSolved = false;
     }
     

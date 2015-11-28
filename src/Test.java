@@ -8,7 +8,7 @@
 import GeneticAlgorithm.GeneticAlgorithm;
 import GeneticAlgorithm.SudokuSolver;
 import GeneticAlgorithm.mutation.*;
-import GeneticAlgorithm.recombination.nPointCrossover;
+import GeneticAlgorithm.recombination.*;
 import GeneticAlgorithm.representation.Individual;
 import GeneticAlgorithm.selection.Elitism;
 import GeneticAlgorithm.selection.TournamentSelection;
@@ -34,10 +34,15 @@ public class Test {
         GeneticAlgorithm solver = new SudokuSolver();
         solver.setMethods(new Elitism(solver.Sr), 
                 new TournamentSelection(3, solver.Sr), 
+                //crossover methods
                 /*new UniformCrossover(solver.pc),*/
-                new nPointCrossover(3),
+                new nPointCrossover(2, solver.pc),
+                /*new CutAndCrossfill(solver.pc),*/
+                
+                //mutation methods
                /*new CreepMutation(solver.pm)*/
                new RandomResettingMutation(solver.pm)
+                /*new SwapMutation(solver.pm)*/
         );
         Individual fittest = solver.solve(filename);
         fittest.showPhenotype();
@@ -70,10 +75,6 @@ public class Test {
         
         String file_name = filename.split("\\s.\\s")[0];
         file_name += ".out";
-        
-        Pattern r = Pattern.compile("Recombination:\\sN-Point Crossover\\s[(]\\d\\s[\\w]*[)]");
-        //String line ="Recombination: N-Point Crossover (3 points)";
-        Matcher m = r.matcher(ga.recombination.toString());
         PrintWriter writer = null;
         try {
             writer = new PrintWriter(file_name, "UTF-8");
@@ -85,10 +86,7 @@ public class Test {
             writer.println("Mutation Method: " + ga.mutation);
             writer.println("Parent Selection: " + ga.p_selection);
             writer.println("Survivor Selection: " + ga.s_selection);
-            if(!m.matches())
-                writer.println("Pc: " + ga.pc);
-            else
-                writer.println("Pc: N/A");
+            writer.println("Pc: " + ga.pc);
             writer.println("Pm: " + ga.pm);
             writer.println("Survival Rate: " + ga.Sr);
             writer.println("----------");

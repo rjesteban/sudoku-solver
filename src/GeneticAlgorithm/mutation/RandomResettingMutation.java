@@ -21,7 +21,7 @@ public class RandomResettingMutation implements Mutation{
     @Override
     public void mutate(Individual[] child) {
         for(Individual i:child){
-           mutate(i);
+            mutate(i);
         }
     }
    

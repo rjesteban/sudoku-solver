@@ -16,9 +16,11 @@ import java.util.Random;
  */
 public class nPointCrossover implements Recombination{
     private final int[] breakpoint;
+    private final double pc;
     
-    public nPointCrossover(int numBreakPoints){
+    public nPointCrossover(int numBreakPoints, double pc){
         breakpoint = new int[numBreakPoints];
+        this.pc = pc;
     }
     
     
@@ -29,8 +31,13 @@ public class nPointCrossover implements Recombination{
         for (int i = 0; i < child.length; i++) {
             int a = i;
             int b = ++i;
-            child[a] = crossover(parent[a].copy(),parent[b].copy());
-            child[b] = crossover(parent[b].copy(),parent[a].copy());
+            if(Math.random() < this.pc) {
+                child[a] = crossover(parent[a].copy(),parent[b].copy());
+                child[b] = crossover(parent[b].copy(),parent[a].copy());
+            } else {
+                child[a] = parent[a];
+                child[b] = parent[b];
+            }
         }
         return child;
     }
