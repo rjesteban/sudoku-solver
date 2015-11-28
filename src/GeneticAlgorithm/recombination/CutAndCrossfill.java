@@ -30,8 +30,8 @@ private final double pc;
                 child[a] = crossover(parent[a].copy(),parent[b].copy());
                 child[b] = crossover(parent[b].copy(),parent[a].copy());
             } else{
-                child[a] = parent[a].copy();
-                child[b] = parent[b].copy();
+                child[a] = parent[a];
+                child[b] = parent[b];
             }    
         }
         return child;
