@@ -35,8 +35,8 @@ public class nPointCrossover implements Recombination{
                 child[a] = crossover(parent[a].copy(),parent[b].copy());
                 child[b] = crossover(parent[b].copy(),parent[a].copy());
             } else {
-                child[a] = parent[a];
-                child[b] = parent[b];
+                child[a] = parent[a].copy();
+                child[b] = parent[b].copy();
             }
         }
         return child;
