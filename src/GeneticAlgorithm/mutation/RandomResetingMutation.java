@@ -30,7 +30,8 @@ public class RandomResetingMutation implements Mutation{
             double prob = Math.random();
             if (prob <= pm && individual.getGenotype()[i].isEditable()) {
                 individual.getGenotype()[i].setValue(
-                        Double.valueOf(Math.random()*Math.sqrt(individual.getGenotype().length)).intValue()+1
+                        //Double.valueOf(Math.random()*Math.sqrt(individual.getGenotype().length)).intValue()+1
+                        individual.getGenotype()[Double.valueOf(Math.random()*individual.getGenotype().length).intValue()].getValue()
                 );
             }
         }

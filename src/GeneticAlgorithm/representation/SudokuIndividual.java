@@ -5,13 +5,14 @@
  */
 package GeneticAlgorithm.representation;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
  *
  * @author rjesteban
  */
-public final class SudokuIndividual implements Individual, Comparable<SudokuIndividual>{
+public final class SudokuIndividual implements Individual{
     public SudokuAllele[][] phenotype;
     public int rows;
     public int cols;
@@ -65,16 +66,32 @@ public final class SudokuIndividual implements Individual, Comparable<SudokuIndi
     
     @Override
     public void randomize(){
+        Random r = new Random();
+        ArrayList<Integer> chrom = new ArrayList<Integer>();
         for(SudokuAllele[] chromosome:phenotype){
-            for(SudokuAllele allele:chromosome){
-                if(allele.getValue()==0 || allele.isEditable()) {
-                    Random r = new Random();
-                    allele.setValue(r.nextInt(this.rows-1)+1);
-                    allele.setEditable(true);
+            SudokuAllele[] rrr = chromosome;
+            for(int s=0;s<rrr.length;s++){
+                if(rrr[s].getValue()!=0){
+                    chrom.add(rrr[s].getValue());
                 }
-                else
-                    allele.setEditable(false);
             }
+            for(SudokuAllele allele:chromosome){
+                if(allele.getValue()==0){
+                    int val = r.nextInt(this.rows)+1;
+                    while(chrom.contains(val)){
+                        val = r.nextInt(this.rows)+1;
+                    }
+                    chrom.add(val);
+
+                    if(allele.getValue()==0) {
+                        allele.setValue(val);
+                        allele.setEditable(true);
+                    }
+                    else
+                        allele.setEditable(false);
+                }
+            }
+            chrom.clear();
         }
         //this.showPhenotype();
      }
@@ -96,11 +113,6 @@ public final class SudokuIndividual implements Individual, Comparable<SudokuIndi
     
     @Override
     public void showPhenotype(){
-        /*for (SudokuAllele[] phenotype1 : phenotype) {
-            for(int c = 0; c < phenotype[0].length; c++)
-                System.out.print(phenotype1[c].getValue() + " ");
-            System.out.println();
-        }*/
         for(int r = 0; r < this.rows; r++){
             for(int c = 0; c < this.cols; c++){
                 System.out.print(phenotype[r][c].getValue()+" ");
@@ -216,10 +228,10 @@ public final class SudokuIndividual implements Individual, Comparable<SudokuIndi
      * Descending sort; since we assume GA solves maximization problems
     */
     @Override
-    public int compareTo(SudokuIndividual o) {
-        if (this.fitness < o.fitness)
+    public int compareTo(Individual o) {
+        if (this.calculateFitness() < o.calculateFitness())
             return 1;
-        else if (this.fitness > o.fitness)
+        else if (this.calculateFitness() > o.calculateFitness())
             return -1;
         else
             return 0;

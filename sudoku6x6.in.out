@@ -2,17 +2,26 @@ Parameters used by GA:
 Representation: Representation: Integer
 Population size: 10
 Max Generation): 500000
-Recombination Method: Recombination: N-Point Crossover
+Recombination Method: Recombination: N-Point Crossover (3 points)
 Mutation Method: Mutation: Random Reseting
 Parent Selection: Selection: Tournament selection
 Survivor Selection: Parent Selection: Elitism
-Pc: 0.5
+Pc: N/A
 Pm: 0.01
 Survival Rate: 0.2
 ----------
-Number of generations ran: 0
-Total Running Time: 77 milliseconds
+Number of generations ran: 384955
+Total Running Time: 396 seconds
 Number of population restarts: 0
 Phenotype of Best performing individual: 
-Faye di nko kbaw ani, himu nalang bago class nga muformat sa puzzle
+2 1 5    4 3 6    
+4 6 3    1 2 5    
+
+5 3 4    2 6 1    
+1 2 6    3 5 4    
+
+3 5 1    6 4 2    
+6 4 2    5 1 3    
+
+
 The sudoku puzzle was solved

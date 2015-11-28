@@ -33,26 +33,18 @@ public class TournamentSelection implements ParentSelection{
         Individual[] elites = new Individual[size];
         
         for (int i=0; i < elites.length; i++) {
-            elites[i] = doTournament(pick(candidates));
+            elites[i] = pick(candidates);
         }
         return elites;
     }
     
-    public Individual[] pick(Individual[] candidate){
+    public Individual pick(Individual[] candidate){
         Random r = new Random();
         Individual[] pick;
         pick = new Individual[this.k];
-        for(int i = 0; i < pick.length; i++){
+        for(int i = 0; i < pick.length; i++)
             pick[i] = candidate[r.nextInt(candidate.length)];
-        }
-        return pick;
-    }
-    
-    public Individual doTournament(Individual[] chosen){
-        Individual[] clone = new Individual[chosen.length];
-        for(int i = 0; i < clone.length; i++)
-            clone[i] = chosen[i];
-        Arrays.sort(chosen);
-        return chosen[0];
+        Arrays.sort(pick);
+        return pick[0];
     }
 }

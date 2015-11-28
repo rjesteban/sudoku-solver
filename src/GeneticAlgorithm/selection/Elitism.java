@@ -29,7 +29,6 @@ public class Elitism implements SurvivorSelection{
     public Individual[] select(Individual[] candidate) {
         int size = Double.valueOf(survival_rate*candidate.length).intValue();
         Individual[] survivor = new Individual[size];
-        Arrays.sort(candidate);
         for(int i = 0; i< size; i++){
             survivor[i] = candidate[i];
         }

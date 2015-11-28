@@ -9,7 +9,7 @@ package GeneticAlgorithm.representation;
  *
  * @author rjesteban
  */
-public interface Individual {
+public interface Individual extends Comparable<Individual> {
     public double calculateFitness();
     public void setFitness(double fitness);
     public Allele[] getGenotype();

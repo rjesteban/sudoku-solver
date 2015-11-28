@@ -11,6 +11,7 @@ import java.util.Scanner;
 import GeneticAlgorithm.representation.Individual;
 import GeneticAlgorithm.representation.SudokuAllele;
 import GeneticAlgorithm.representation.SudokuIndividual;
+import java.util.Arrays;
 
 /**
  *
@@ -40,12 +41,14 @@ public class SudokuSolver extends GeneticAlgorithm {
             //stopping critera: reach
             for (int restarts = 0; restarts < this.max_restarts; restarts++) {
                 Individual[] individual = generatePopulation(initial_state);
+                Arrays.sort(individual);
                 boolean reached = maxFitnessReached(individual, 0);
                 for (int iterations = 0;
                         iterations < max_iterations;
                         iterations++, reached = maxFitnessReached(individual, iterations)) {
                     if(reached)
                         break;
+                    Arrays.sort(individual);
                     Individual[] survivor = this.s_selection.select(individual);
                     Individual[] parent = this.p_selection.select(individual);
                     Individual[] offspring = this.recombination.generateOffsprings(parent);
@@ -53,6 +56,7 @@ public class SudokuSolver extends GeneticAlgorithm {
                     this.mutation.mutate(individual);
                     this.generation = iterations;
                     this.restart = restarts;
+                    Arrays.sort(individual);
                 }
                 if (reached){
                     this.isSolved = true;
@@ -92,7 +96,7 @@ public class SudokuSolver extends GeneticAlgorithm {
     
     public boolean maxFitnessReached(Individual[] population, int iteration){
         boolean flag = false;
-        System.out.print("Iteration "+ iteration + ": ");
+        System.out.print(iteration + ": ");
         for (Individual i:population) {
             double fitness = i.calculateFitness();
             System.out.print(fitness + " ");

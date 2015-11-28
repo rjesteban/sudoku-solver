@@ -7,7 +7,7 @@
 
 import GeneticAlgorithm.GeneticAlgorithm;
 import GeneticAlgorithm.SudokuSolver;
-import GeneticAlgorithm.mutation.RandomResetingMutation;
+import GeneticAlgorithm.mutation.*;
 import GeneticAlgorithm.recombination.nPointCrossover;
 import GeneticAlgorithm.representation.Individual;
 import GeneticAlgorithm.selection.Elitism;
@@ -17,6 +17,8 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 /**
  *
@@ -69,6 +71,9 @@ public class Test {
         String file_name = filename.split("\\s.\\s")[0];
         file_name += ".out";
         
+        Pattern r = Pattern.compile("Recombination:\\sN-Point Crossover\\s[(]\\d\\s[\\w]*[)]");
+        //String line ="Recombination: N-Point Crossover (3 points)";
+        Matcher m = r.matcher(ga.recombination.toString());
         PrintWriter writer = null;
         try {
             writer = new PrintWriter(file_name, "UTF-8");
@@ -80,7 +85,10 @@ public class Test {
             writer.println("Mutation Method: " + ga.mutation);
             writer.println("Parent Selection: " + ga.p_selection);
             writer.println("Survivor Selection: " + ga.s_selection);
-            writer.println("Pc: " + ga.pc);
+            if(!m.matches())
+                writer.println("Pc: " + ga.pc);
+            else
+                writer.println("Pc: N/A");
             writer.println("Pm: " + ga.pm);
             writer.println("Survival Rate: " + ga.Sr);
             writer.println("----------");
