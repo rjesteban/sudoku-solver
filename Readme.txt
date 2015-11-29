@@ -7,7 +7,6 @@ java -jar dist/SudokuSolver.jar
 Project Tree:
 
 SudokuSolver/
-  |
   src/
     Test.java ----> this contains the main() function, you may wish to place desired methods here.
     GeneticAlgorithm/ ---> 
