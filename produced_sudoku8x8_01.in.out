@@ -1,0 +1,30 @@
+Parameters used by GA: 
+Representation: Representation: Integer
+Population size: 10
+Max Generation): 500000
+Recombination Method: Recombination: N-Point Crossover (2 points)
+Mutation Method: Mutation: Random Resetting
+Parent Selection: Selection: Tournament selection
+Survivor Selection: Parent Selection: Elitism
+Pc: 0.9
+Pm: 0.01
+Survival Rate: 0.2
+----------
+Number of generations ran: 74201
+Total Running Time: 1921 seconds
+Number of population restarts: 2
+Phenotype of Best performing individual: 
+5 6 2 4    7 3 1 8    
+7 1 8 3    4 2 5 6    
+
+8 4 5 6    3 1 2 7    
+3 7 1 2    6 4 8 5    
+
+1 5 4 8    2 6 7 3    
+2 3 6 7    8 5 4 1    
+
+6 2 7 5    1 8 3 4    
+4 8 3 1    5 7 6 2    
+
+
+The sudoku puzzle was solved
