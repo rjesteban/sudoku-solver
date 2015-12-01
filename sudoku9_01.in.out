@@ -10,8 +10,8 @@ Pc: 0.9
 Pm: 0.01
 Survival Rate: 0.2
 ----------
-Number of generations ran: 207921
-Total Running Time: 502 seconds
+Number of generations ran: 21961
+Total Running Time: 38 seconds
 Number of population restarts: 0
 Phenotype of Best performing individual: 
 6 9 8    1 3 4    7 5 2    

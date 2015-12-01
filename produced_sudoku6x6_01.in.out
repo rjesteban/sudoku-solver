@@ -2,7 +2,7 @@ Parameters used by GA:
 Representation: Representation: Integer
 Population size: 10
 Max Generation): 500000
-Recombination Method: Recombination: N-Point Crossover (2 points)
+Recombination Method: Recombination: N-Point Crossover (3 points)
 Mutation Method: Mutation: Random Resetting
 Parent Selection: Selection: Tournament selection
 Survivor Selection: Parent Selection: Elitism
@@ -10,9 +10,9 @@ Pc: 0.9
 Pm: 0.01
 Survival Rate: 0.2
 ----------
-Number of generations ran: 111696
-Total Running Time: 406 seconds
-Number of population restarts: 1
+Number of generations ran: 29676
+Total Running Time: 25 seconds
+Number of population restarts: 0
 Phenotype of Best performing individual: 
 2 1 4    5 6 3    
 3 6 5    4 2 1    

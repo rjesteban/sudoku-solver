@@ -3,22 +3,22 @@ Representation: Representation: Integer
 Population size: 10
 Max Generation): 500000
 Recombination Method: Recombination: N-Point Crossover (3 points)
-Mutation Method: Mutation: Random Reseting
+Mutation Method: Mutation: Random Resetting
 Parent Selection: Selection: Tournament selection
 Survivor Selection: Parent Selection: Elitism
-Pc: N/A
+Pc: 0.9
 Pm: 0.01
 Survival Rate: 0.2
 ----------
-Number of generations ran: 34039
-Total Running Time: 45 seconds
+Number of generations ran: 10
+Total Running Time: 230 milliseconds
 Number of population restarts: 0
 Phenotype of Best performing individual: 
-1 2    3 4    
-4 3    2 1    
+1 2    4 3    
+3 4    2 1    
 
-2 4    1 3    
-3 1    4 2    
+4 3    1 2    
+2 1    3 4    
 
 
 The sudoku puzzle was solved
