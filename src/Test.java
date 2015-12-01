@@ -17,8 +17,6 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 /**
  *
@@ -27,9 +25,9 @@ import java.util.regex.Matcher;
 public class Test {
     public static void main(String[] args) {
         //String filename = "sudoku4x4.in";
-        //String filename = "produced_sudoku8x8_01.in";
+        String filename = "produced_sudoku4x4_01_1.in";
         //String filename = "sudoku6x6.in";
-        String filename = "sudoku9_01.in";
+        //String filename = "sudoku9_01.in";
         long start = System.currentTimeMillis();
         //==================
         GeneticAlgorithm solver = new SudokuSolver();
@@ -37,13 +35,13 @@ public class Test {
                 new TournamentSelection(3, solver.Sr), 
                 //crossover methods
                 /*new UniformCrossover(solver.pc),*/
-                new nPointCrossover(2, solver.pc),
-                /*new CutAndCrossfill(solver.pc),*/
+                /*new nPointCrossover(2, solver.pc),*/
+                new CutAndCrossfill(solver.pc),
                 
                 //mutation methods
                /*new CreepMutation(solver.pm)*/
-               new RandomResettingMutation(solver.pm)
-                /*new SwapMutation(solver.pm)*/
+               /*new RandomResettingMutation(solver.pm)*/
+                new SwapMutation(solver.pm)
         );
         Individual fittest = solver.solve(filename);
         fittest.showPhenotype();

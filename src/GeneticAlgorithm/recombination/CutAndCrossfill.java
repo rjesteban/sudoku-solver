@@ -96,4 +96,9 @@ private final double pc;
         child.calculateFitness();
         return child;
     }
+    
+    @Override
+    public String toString(){
+        return "Cut and Crossfill";
+    }
 }

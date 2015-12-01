@@ -22,7 +22,7 @@ public class SwapMutation implements Mutation {
     @Override
     public void mutate(Individual[] child) {
         for(Individual i:child){
-            if (Math.random() < mutation)
+            if (Math.random() <= mutation)
                 swap(i);
         }
     }
@@ -42,5 +42,10 @@ public class SwapMutation implements Mutation {
             i.getGenotype()[a].setValue(i.getGenotype()[b].getValue());
             i.getGenotype()[b].setValue(aa);
         }
+    }
+    
+    @Override
+    public String toString(){
+        return "Swap Mutation";
     }
 }
