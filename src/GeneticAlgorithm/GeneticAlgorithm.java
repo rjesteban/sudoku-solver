@@ -35,7 +35,7 @@ public abstract class GeneticAlgorithm {
         max_restarts = 3;
         max_iterations = 500000;
         population = 10;
-        Sr = 0.2;
+        Sr = 0.4;
         pm = 0.01;
         pc = 0.9;
         isSolved = false;

@@ -28,7 +28,8 @@ public class Test {
         //String filename = "sudoku4x4.in";
         //String filename = "produced_sudoku4x4_01_1.in";
         //String filename = "sudoku6x6.in";
-        String filename = "sudoku9_02.in";
+        String filename = "produced_sudoku8x8_01.in";
+        //String filename = "sudoku9_01.in";
         long start = System.currentTimeMillis();
         //==================
         GeneticAlgorithm solver = new SudokuSolver();
