@@ -3,15 +3,15 @@ Representation: Representation: Integer
 Population size: 10
 Max Generation): 500000
 Recombination Method: Recombination: N-Point Crossover (3 points)
-Mutation Method: Mutation: Random Reseting
+Mutation Method: Mutation: Random Resetting
 Parent Selection: Selection: Tournament selection
 Survivor Selection: Parent Selection: Elitism
-Pc: N/A
+Pc: 0.9
 Pm: 0.01
-Survival Rate: 0.2
+Survival Rate: 0.4
 ----------
-Number of generations ran: 384955
-Total Running Time: 396 seconds
+Number of generations ran: 11207
+Total Running Time: 22 seconds
 Number of population restarts: 0
 Phenotype of Best performing individual: 
 2 1 5    4 3 6    
