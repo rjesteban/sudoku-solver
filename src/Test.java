@@ -10,6 +10,7 @@ import GeneticAlgorithm.SudokuSolver;
 import GeneticAlgorithm.mutation.*;
 import GeneticAlgorithm.recombination.*;
 import GeneticAlgorithm.representation.Individual;
+import GeneticAlgorithm.representation.SudokuIndividual;
 import GeneticAlgorithm.selection.Elitism;
 import GeneticAlgorithm.selection.TournamentSelection;
 import java.io.FileNotFoundException;
@@ -25,9 +26,9 @@ import java.util.logging.Logger;
 public class Test {
     public static void main(String[] args) {
         //String filename = "sudoku4x4.in";
-        String filename = "produced_sudoku4x4_01_1.in";
+        //String filename = "produced_sudoku4x4_01_1.in";
         //String filename = "sudoku6x6.in";
-        //String filename = "sudoku9_01.in";
+        String filename = "sudoku9_02.in";
         long start = System.currentTimeMillis();
         //==================
         GeneticAlgorithm solver = new SudokuSolver();
@@ -35,13 +36,13 @@ public class Test {
                 new TournamentSelection(3, solver.Sr), 
                 //crossover methods
                 /*new UniformCrossover(solver.pc),*/
-                /*new nPointCrossover(2, solver.pc),*/
-                new CutAndCrossfill(solver.pc),
+                new nPointCrossover(2, solver.pc),
+                /*new CutAndCrossfill(solver.pc),*/
                 
                 //mutation methods
                /*new CreepMutation(solver.pm)*/
-               /*new RandomResettingMutation(solver.pm)*/
-                new SwapMutation(solver.pm)
+               new RandomResettingMutation(solver.pm)
+                /*new SwapMutation(solver.pm)*/
         );
         Individual fittest = solver.solve(filename);
         fittest.showPhenotype();
@@ -96,10 +97,15 @@ public class Test {
             writer.println(fittest.getPhenotype());
             if(ga.isSolved())
                 writer.println("The sudoku puzzle was solved");
-            else
+            else{
+                SudokuIndividual si = (SudokuIndividual)fittest;
                 writer.println("The puzzle wasn't solved. Either the given"
-                        + "\n puzzle was wrongly configured or the GA "
-                        + "has limitations");
+                        + "\npuzzle was wrongly configured or the GA\n"
+                        + "has limitations. Fittest individual on\nthe last generation"
+                        + " was given instead,\nwith a fitness of: " + si.calculateFitness()
+                        + "\n");
+            
+            }
             writer.close();
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);

@@ -37,14 +37,15 @@ public class SudokuSolver extends GeneticAlgorithm {
     @Override
     public Individual solve(String file) {
             initial_state = new SudokuIndividual(readInput(file));
-            
+            Individual fittest = null;
             //stopping critera: reach
-            for (int restarts = 0; restarts < this.max_restarts; restarts++) {
+            for (int restarts = 0; restarts < this.max_restarts;) {
                 Individual[] individual = generatePopulation(initial_state);
                 Arrays.sort(individual);
                 boolean reached = maxFitnessReached(individual, 0);
+                
                 for (int iterations = 0;
-                        iterations < max_iterations;
+                        iterations < this.max_iterations;
                         iterations++, reached = maxFitnessReached(individual, iterations)) {
                     if(reached)
                         break;
@@ -65,8 +66,14 @@ public class SudokuSolver extends GeneticAlgorithm {
                 else{
                     System.out.println("-------Random Restart #" + restarts + " ");
                 }
+                restarts++;
+                //if max restarts is reached, give fittest individual
+                if(this.max_restarts == restarts){
+                    System.out.println("max restarts reached");
+                    fittest = individual[0];
+                }
             }
-            return null;
+            return fittest;
     }
     
     public Individual[] combine(Individual[] survivor, Individual[] offspring){
