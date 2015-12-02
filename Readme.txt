@@ -1,12 +1,16 @@
 Sudoku solver using Genetic Algorithm
+repo: https://github.com/rjesteban/sudoku-solver
+documentation: https://docs.google.com/document/d/1QmS9DHgbLSjUrwLRy3sBmG8kzEfBR0QAjXH3-XOkE90/edit
+
 
 To run this project (after compiling):
 
 java -jar dist/SudokuSolver.jar
 
-Project Tree:
+Project Tree (important ones):
 
 SudokuSolver/
+  [inputs and outputs here]
   src/
     Test.java ----> this contains the main() function, you may wish 
                     to place desired methods and inputs here.
