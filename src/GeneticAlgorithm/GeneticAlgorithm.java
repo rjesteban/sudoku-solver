@@ -34,7 +34,7 @@ public abstract class GeneticAlgorithm {
     public GeneticAlgorithm(){
         max_restarts = 3;
         max_iterations = 500000;
-        population = 10;
+        population = 100;
         Sr = 0.4;
         pm = 0.01;
         pc = 0.9;
